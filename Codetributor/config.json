@@ -1,0 +1,12 @@
+{
+  "Discord": {
+    "GuildId": 859328981646704661,
+    "RoleId": 885012245535395850
+  },
+  "Repo": {
+    "Owner": "Ranker-Team",
+    "Name": "Ranker"
+  },
+  "ClientId": "9dbfab1b636998cd308e",
+  "Host": "https://localhost:44395/"
+}
