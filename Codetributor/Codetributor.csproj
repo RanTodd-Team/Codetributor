@@ -5,8 +5,8 @@
     <UserSecretsId>f24e17d8-ad17-460f-858b-76ff55a791cb</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RestoreAdditionalProjectSources>
-	  https://nuget.emzi0767.com/api/v3/index.json
-	</RestoreAdditionalProjectSources>
+      https://nuget.emzi0767.com/api/v3/index.json
+    </RestoreAdditionalProjectSources>
   </PropertyGroup>
 
   <ItemGroup>
