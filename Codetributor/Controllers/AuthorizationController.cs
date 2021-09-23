@@ -84,7 +84,9 @@ namespace Codetributor.Controllers
                     }
                     catch
                     {
-                        // do nothing for now.
+                        await ctx.Guild.GetChannel(_config.Discord.ChannelId).SendMessageAsync("Sorry, but I cannot find any commits in " +
+                            $"{_config.Repo.Owner}/{_config.Repo.Name}" +
+                            $" authored by you.");
                     }
                 }
                 return RedirectToAction("Completed");
@@ -109,7 +111,7 @@ namespace Codetributor.Controllers
                     }
                     catch
                     {
-                        // do nothing for now.
+                        await ctx.Guild.GetChannel(_config.Discord.ChannelId).SendMessageAsync("Thank you. You are now a verified codetributor!");
                     }
                 }
                 return RedirectToAction("Completed");

@@ -4,6 +4,8 @@
     {
         public ulong GuildId { get; set; }
 
+        public ulong ChannelId { get; set; }
+
         public ulong RoleId { get; set; }
     }
 
