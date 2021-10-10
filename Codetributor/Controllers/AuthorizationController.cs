@@ -90,9 +90,7 @@ namespace Codetributor.Controllers
                     }
                     catch
                     {
-                        await ctx.Guild.GetChannel(_config.Discord.ChannelId).SendMessageAsync("Sorry, but I cannot find any commits in " +
-                            $"{_config.Repo.Owner}/{_config.Repo.Name}" +
-                            $" authored by you.");
+                        await ctx.Guild.GetChannel(_config.Discord.ChannelId).SendMessageAsync("Sorry, but I cannot find any commits authored by you.");
                     }
                 }
                 return RedirectToAction("Completed");
