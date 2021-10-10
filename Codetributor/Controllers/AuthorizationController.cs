@@ -52,25 +52,33 @@ namespace Codetributor.Controllers
 
             var currentUser = await ghClient.User.Current();
 
-            var commits = await ghClient
-                .Repository
-                .Commit
-                .GetAll(
-                    _config.Repo.Owner,
-                    _config.Repo.Name,
-                    new CommitRequest() { Author = currentUser.Login });
+            bool any = false;
 
+            foreach (var repo in _config.Repos)
+            {
+                var commits = await ghClient
+                    .Repository
+                    .Commit
+                    .GetAll(
+                        repo.Owner,
+                        repo.Name,
+                        new CommitRequest() { Author = currentUser.Login });
+
+                if (commits.Count > 0)
+                {
+                    any = true;
+                    break;
+                }
+            }
             ulong iId = ulong.Parse(InteractionId);
 
-            if (commits.Count == 0)
+            if (!any)
             {
                 var ctx = _store.GetInteraction(iId);
                 try
                 {
                     var builder = new DiscordFollowupMessageBuilder()
-                        .WithContent("Sorry, but I cannot find any commits in " +
-                        $"{_config.Repo.Owner}/{_config.Repo.Name}" +
-                        " authored by you.")
+                        .WithContent("Sorry, but I cannot find any commits authored by you.")
                         .AsEphemeral(true);
                     await ctx.FollowUpAsync(builder);
                 }
@@ -78,9 +86,7 @@ namespace Codetributor.Controllers
                 {
                     try
                     {
-                        await ctx.Member.SendMessageAsync("Sorry, but I cannot find any commits in " +
-                            $"{_config.Repo.Owner}/{_config.Repo.Name}" +
-                            $" authored by you.");
+                        await ctx.Member.SendMessageAsync("Sorry, but I cannot find any commit authored by you.");
                     }
                     catch
                     {

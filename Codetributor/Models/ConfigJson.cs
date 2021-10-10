@@ -18,7 +18,7 @@
     {
         public DiscordConfig Discord { get; set; }
 
-        public RepoConfig Repo { get; set; }
+        public RepoConfig[] Repos { get; set; }
 
         public string ClientId { get; set; }
 
